@@ -17,6 +17,16 @@ const getApiBaseUrl = () => {
 };
 const baseUrl = getApiBaseUrl();
 app.use(express_1.default.json());
+app.use((_req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    if (_req.method === 'OPTIONS') {
+        res.sendStatus(204);
+        return;
+    }
+    next();
+});
 app.get('/api/health', (_req, res) => {
     res.json({ status: 'ok', baseUrl });
 });
