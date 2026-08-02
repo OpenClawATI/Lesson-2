@@ -1,5 +1,22 @@
+function getCodespaceName() {
+  const fromEnv = import.meta.env.VITE_CODESPACE_NAME?.trim();
+  if (fromEnv) {
+    return fromEnv;
+  }
+
+  if (typeof window !== 'undefined') {
+    const hostname = window.location.hostname || '';
+    const match = hostname.match(/^([a-z0-9-]+)-\d+\.app\.github\.dev$/i);
+    if (match) {
+      return match[1];
+    }
+  }
+
+  return '';
+}
+
 export function getApiBaseUrl() {
-  const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim();
+  const codespaceName = getCodespaceName();
   if (codespaceName) {
     return `https://${codespaceName}-8000.app.github.dev`;
   }
