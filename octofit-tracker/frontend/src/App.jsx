@@ -1,49 +1,57 @@
-import './App.css'
+import { NavLink, Route, Routes } from 'react-router-dom';
+import Activities from './components/Activities';
+import Leaderboard from './components/Leaderboard';
+import Teams from './components/Teams';
+import Users from './components/Users';
+import Workouts from './components/Workouts';
+import './App.css';
+
+const navItems = [
+  { to: '/', label: 'Home' },
+  { to: '/users', label: 'Users' },
+  { to: '/teams', label: 'Teams' },
+  { to: '/activities', label: 'Activities' },
+  { to: '/leaderboard', label: 'Leaderboard' },
+  { to: '/workouts', label: 'Workouts' },
+];
 
 function App() {
   return (
-    <main className="container py-5">
-      <div className="p-5 mb-4 bg-light rounded-3 border">
-        <div className="container-fluid py-3">
-          <h1 className="display-5 fw-bold">OctoFit Tracker</h1>
-          <p className="col-md-8 fs-4">
-            A modern multi-tier fitness platform for tracking activities, building teams,
-            and competing on a live leaderboard.
-          </p>
-          <button className="btn btn-primary btn-lg" type="button">
-            Explore the app
-          </button>
+    <div className="min-vh-100 bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div className="container">
+          <span className="navbar-brand mb-0 h1">OctoFit Tracker</span>
+          <div className="navbar-nav ms-auto">
+            {navItems.map((item) => (
+              <NavLink key={item.to} to={item.to} className="nav-link" end={item.to === '/'}>
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
         </div>
-      </div>
+      </nav>
 
-      <div className="row g-4">
-        <div className="col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h2 className="card-title h5">Activities</h2>
-              <p className="card-text">Log workouts and monitor your progress over time.</p>
-            </div>
-          </div>
+      <main className="container py-4">
+        <div className="p-4 mb-4 bg-white rounded-3 border shadow-sm">
+          <h1 className="display-6 fw-bold">Modern multi-tier fitness tracking</h1>
+          <p className="text-muted mb-0">
+            Configure VITE_CODESPACE_NAME in .env.local to use Codespaces URLs such as
+            https://{import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/.
+            If it is unset, the app falls back to localhost.
+          </p>
         </div>
-        <div className="col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h2 className="card-title h5">Teams</h2>
-              <p className="card-text">Create or join teams and stay motivated together.</p>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h2 className="card-title h5">Leaderboard</h2>
-              <p className="card-text">Compete with others and climb the rankings.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  )
+
+        <Routes>
+          <Route path="/" element={<Users />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/teams" element={<Teams />} />
+          <Route path="/activities" element={<Activities />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/workouts" element={<Workouts />} />
+        </Routes>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
