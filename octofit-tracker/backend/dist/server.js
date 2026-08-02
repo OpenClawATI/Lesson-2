@@ -9,10 +9,13 @@ const routes_1 = __importDefault(require("./routes"));
 const app = (0, express_1.default)();
 const port = Number(process.env.PORT) || 8000;
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_db';
-const codespaceName = process.env.CODESPACE_NAME;
-const baseUrl = codespaceName
-    ? `https://${codespaceName}-8000.app.github.dev`
-    : 'http://localhost:8000';
+const getApiBaseUrl = () => {
+    const codespaceName = process.env.CODESPACE_NAME;
+    return codespaceName
+        ? `https://${codespaceName}-8000.app.github.dev`
+        : 'http://localhost:8000';
+};
+const baseUrl = getApiBaseUrl();
 app.use(express_1.default.json());
 app.get('/api/health', (_req, res) => {
     res.json({ status: 'ok', baseUrl });
