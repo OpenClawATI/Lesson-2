@@ -9,7 +9,13 @@ export function getApiBaseUrl() {
 
 export function getApiUrl(resource) {
   const normalizedResource = resource.replace(/^\/+|\/+$/g, '');
-  return `${getApiBaseUrl()}/api/${normalizedResource}/`;
+  const baseUrl = getApiBaseUrl();
+  return `${baseUrl}/api/${normalizedResource}/`;
+}
+
+export function getApiUrlFromCurrentOrigin(resource) {
+  const normalizedResource = resource.replace(/^\/+|\/+$/g, '');
+  return `/api/${normalizedResource}/`;
 }
 
 export function resolveCollection(payload) {
