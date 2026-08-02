@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getApiUrlFromCurrentOrigin, resolveCollection } from '../utils/api';
+import { getApiUrl, resolveCollection } from '../utils/api';
 
 function Activities() {
   const [activities, setActivities] = useState([]);
@@ -9,7 +9,7 @@ function Activities() {
   useEffect(() => {
     async function loadActivities() {
       try {
-        const response = await fetch(getApiUrlFromCurrentOrigin('activities'));
+        const response = await fetch(getApiUrl('activities'));
         if (!response.ok) {
           throw new Error('Failed to load activities');
         }

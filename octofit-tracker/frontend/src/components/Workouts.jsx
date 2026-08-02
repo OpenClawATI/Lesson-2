@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getApiUrlFromCurrentOrigin, resolveCollection } from '../utils/api';
+import { getApiUrl, resolveCollection } from '../utils/api';
 
 function Workouts() {
   const [workouts, setWorkouts] = useState([]);
@@ -9,7 +9,7 @@ function Workouts() {
   useEffect(() => {
     async function loadWorkouts() {
       try {
-        const response = await fetch(getApiUrlFromCurrentOrigin('workouts'));
+        const response = await fetch(getApiUrl('workouts'));
         if (!response.ok) {
           throw new Error('Failed to load workouts');
         }

@@ -31,8 +31,7 @@ export function getApiUrl(resource) {
 }
 
 export function getApiUrlFromCurrentOrigin(resource) {
-  const normalizedResource = resource.replace(/^\/+|\/+$/g, '');
-  return `/api/${normalizedResource}/`;
+  return getApiUrl(resource);
 }
 
 export function resolveCollection(payload) {
