@@ -29,6 +29,20 @@ app.use((_req, res, next) => {
   next();
 });
 
+app.get('/', (_req, res) => {
+  res.json({
+    message: 'OctoFit API is running',
+    health: `${baseUrl}/api/health`,
+    endpoints: [
+      `${baseUrl}/api/users/`,
+      `${baseUrl}/api/activities/`,
+      `${baseUrl}/api/leaderboard/`,
+      `${baseUrl}/api/teams/`,
+      `${baseUrl}/api/workouts/`,
+    ],
+  });
+});
+
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', baseUrl });
 });
