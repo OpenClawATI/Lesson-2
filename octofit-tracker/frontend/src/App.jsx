@@ -35,9 +35,9 @@ function App() {
         <div className="p-4 mb-4 bg-white rounded-3 border shadow-sm">
           <h1 className="display-6 fw-bold">Modern multi-tier fitness tracking</h1>
           <p className="text-muted mb-0">
-            Configure VITE_CODESPACE_NAME in .env.local to use Codespaces URLs such as
-            https://{import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/.
-            If it is unset, the app falls back to localhost.
+            Define VITE_CODESPACE_NAME in .env.local to use Codespaces URLs such as
+            https://your-codespace-name-8000.app.github.dev/api/users/. If it is unset,
+            the app safely falls back to http://localhost:8000 for local development.
           </p>
         </div>
 
